@@ -5102,6 +5102,7 @@
                 title: d.title || '',
                 price: d.price || '',
                 hero: d.hero ? sImg(d.hero, 1600) : '',
+                detailImage: d.detailImage ? sImg(d.detailImage, 1600) : '',
                 desc: d.desc || '',
                 facts: (d.facts || []).map(function (f) { return [f.key, f.value]; }),
                 amen: d.amen || [],
@@ -5306,7 +5307,7 @@
                 '"owners": *[_type=="teamMember"]|order(coalesce(order,999) asc){name,role,bio,stat,"photo":photo.asset->url},' +
                 '"reviews": *[_type=="review"]|order(coalesce(order,999) asc){name,initials,quote,roleLabel,googleUrl,rating},' +
                 '"customers": *[_type=="happyCustomer"]|order(coalesce(order,999) asc){name,location,"photo":photo.asset->url},' +
-                '"props": *[_type=="property"]|order(coalesce(order,999) asc,_createdAt asc){tag,"city":city->slug.current,"cityName":city->name,loc,type,purpose,pmin,pmax,title,price,desc,amen,"hero":hero.asset->url,facts[]{key,value},"gallery":gallery[].asset->url,"brochure":brochure.asset->url,"logo":logo.asset->url,"video":video.asset->url}' +
+                '"props": *[_type=="property"]|order(coalesce(order,999) asc,_createdAt asc){tag,"city":city->slug.current,"cityName":city->name,loc,type,purpose,pmin,pmax,title,price,desc,amen,"hero":hero.asset->url,"detailImage":detailImage.asset->url,facts[]{key,value},"gallery":gallery[].asset->url,"brochure":brochure.asset->url,"logo":logo.asset->url,"video":video.asset->url}' +
                 '}';
             var url = 'https://' + SANITY_PROJECT_ID + (SANITY_USE_CDN ? '.apicdn' : '.api') + '.sanity.io/' + SANITY_API_VERSION +
                 '/data/query/' + SANITY_DATASET + '?query=' + encodeURIComponent(q);
@@ -5333,7 +5334,7 @@
         var detail = document.getElementById('detail');
         function openDetail(i) {
             var p = PROPS[i]; if (!p) return;
-            document.getElementById('dHero').src = p.hero;
+            document.getElementById('dHero').src = p.detailImage || p.hero;
             document.getElementById('dTag').textContent = p.tag;
             var dBr = document.getElementById('dBrochure');
             if (p.brochure) {

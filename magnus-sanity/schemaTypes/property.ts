@@ -110,11 +110,18 @@ export const property = defineType({
     }),
     defineField({
       name: 'hero',
-      title: 'Main image',
+      title: 'Property card image',
       type: 'image',
-      description: 'The large banner image (card + detail view).',
+      description: 'The photo shown on the property card in the listings grid. Also used as the detail-page banner if you do not set a separate landscape image below.',
       options: {hotspot: true},
       validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'detailImage',
+      title: 'Detail page image (landscape) — optional',
+      type: 'image',
+      description: 'The large banner shown when someone opens this property. Use a wide / landscape photo. If left empty, the card image above is used automatically.',
+      options: {hotspot: true},
     }),
     defineField({
       name: 'logo',
