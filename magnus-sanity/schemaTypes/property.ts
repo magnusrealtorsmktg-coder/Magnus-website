@@ -57,6 +57,12 @@ export const property = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: 'mapUrl',
+      title: 'Map link',
+      type: 'url',
+      description: 'Google Maps (or any map) link to the property. When set, a "See on Maps" button appears on the property page. Optional.',
+    }),
+    defineField({
       name: 'type',
       title: 'Property type',
       type: 'string',
