@@ -1,0 +1,23 @@
+{
+  "name": "magnus-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Content Studio for Magnus Realtors",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "@sanity/vision": "^5.30.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^5.30.0",
+    "styled-components": "^6.1.0",
+    "@sanity/client": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

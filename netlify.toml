@@ -1,0 +1,9 @@
+# Netlify configuration for the Magnus Realtors website.
+# Only the public website files are assembled into `dist/` and published —
+# this deliberately keeps .env, the magnus-sanity studio, and node_modules
+# OUT of the deploy. The serverless function is bundled from netlify/functions.
+
+[build]
+  command = "rm -rf dist && mkdir -p dist && cp index.html privacy.html terms.html disclaimer.html legal.css dist/"
+  publish = "dist"
+  functions = "netlify/functions"
