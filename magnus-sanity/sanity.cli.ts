@@ -7,5 +7,8 @@ export default defineCliConfig({
   },
   /* Lets `sanity deploy` host the studio for free at <something>.sanity.studio */
   studioHost: 'magnus-realtors',
+  deployment: {
+    appId: 'xduecf1iyy09d4jhqo1pas7i',
+  },
   autoUpdates: true,
 })
