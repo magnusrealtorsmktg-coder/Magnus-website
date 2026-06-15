@@ -2517,6 +2517,34 @@
             margin-top: 4px
         }
 
+        /* ---------- office location map ---------- */
+        .map-embed {
+            margin-top: 44px;
+            height: 440px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #e9e4dc
+        }
+
+        .map-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block
+        }
+
+        .map-cta {
+            text-align: center;
+            margin-top: 30px
+        }
+
+        @media(max-width:600px) {
+            .map-embed {
+                height: 340px
+            }
+        }
+
         /* ---------- footer ---------- */
         footer {
             background: var(--beige);
@@ -4766,6 +4794,33 @@
                         </select></div>
                 </div>
                 <button class="btn btn-gold" id="consultSubmitBtn" type="button">Schedule Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICE LOCATION MAP -->
+    <section class="sec" id="location">
+        <div class="wrap">
+            <div class="sec-head center reveal">
+                <span class="eyebrow">Visit Us</span>
+                <h2>Find our <em>office</em></h2>
+                <p>Behind Magnus Motors, Virar West, Maharashtra</p>
+            </div>
+            <div class="map-embed reveal">
+                <iframe src="https://maps.google.com/maps?q=19.4639569,72.8066111&z=16&hl=en&output=embed"
+                    title="Magnus Realtor office location" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+            <div class="map-cta reveal">
+                <a class="btn btn-gold"
+                    href="https://www.google.com/maps/place/MAGNUS+REALTOR/@19.4639569,72.8040362,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7a9765f1ebf25:0x93c6d30e721a565b!8m2!3d19.4639569!4d72.8066111!16s%2Fg%2F11p5nst4x2"
+                    target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="1.8" style="margin-right:8px;vertical-align:-3px">
+                        <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>Get Directions
+                </a>
             </div>
         </div>
     </section>
