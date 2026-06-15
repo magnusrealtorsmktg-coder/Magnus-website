@@ -312,7 +312,34 @@
         .brand {
             display: flex;
             align-items: center;
-            text-decoration: none
+            text-decoration: none;
+            position: relative
+        }
+
+        .brand-tm {
+            position: absolute;
+            top: 4px;
+            right: -13px;
+            font-size: .62rem;
+            font-weight: 700;
+            color: var(--bronze);
+            line-height: 1
+        }
+
+        .foot-logo {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 18px
+        }
+
+        .foot-logo .brand-logo {
+            margin-bottom: 0
+        }
+
+        .foot-logo .brand-tm {
+            top: 2px;
+            right: -11px;
+            font-size: .55rem
         }
 
         .brand img {
@@ -3457,7 +3484,7 @@
 
     <!-- NAV -->
     <nav id="nav">
-        <a href="#top" class="brand"><img class="brand-logo" alt="Magnus Realtor"></a>
+        <a href="#top" class="brand"><img class="brand-logo" alt="Magnus Realtor"><span class="brand-tm">®</span></a>
         <div class="nav-links">
             <a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#properties">Properties</a>
             <a href="#owner">Owner</a><a href="#stories">Reviews</a>
@@ -4775,7 +4802,8 @@
         <div class="wrap">
             <div class="foot-grid">
                 <div class="foot-brand">
-                    <img class="brand-logo" alt="Magnus Realtor">
+                    <span class="foot-logo"><img class="brand-logo" alt="Magnus Realtor"><span
+                            class="brand-tm">®</span></span>
                     <p>A trusted real estate consultancy in Virar West — guiding buyers, sellers, investors and tenants
                         with local
                         expertise and honest counsel.</p>
@@ -4978,8 +5006,7 @@
         /* embedded assets injected below as window.__ASSETS */
         (function () {
             var A = window.__ASSETS || {};
-            document.querySelectorAll('.brand-logo').forEach(function (i) { i.src = A.LOGO; });
-            (function () { var l = document.querySelector('#ldLogo .brand-logo'); if (l && A.LOADER_LOGO) { l.src = A.LOADER_LOGO; } })();
+            document.querySelectorAll('.brand-logo').forEach(function (i) { i.src = A.LOADER_LOGO || A.LOGO; });
             document.querySelectorAll('.off1').forEach(function (i) { i.src = A.OFFICE1; });
             document.querySelectorAll('.off2').forEach(function (i) { i.src = A.OFFICE2; });
         })();
