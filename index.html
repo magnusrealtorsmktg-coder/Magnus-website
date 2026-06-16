@@ -5315,6 +5315,28 @@
             track.innerHTML = set + set;
         }
 
+        // ---- services grid (icons mapped from a fixed set the client picks in Sanity) ----
+        var SVC_ICONS = {
+            home: '<path d="M3 11l9-8 9 8M5 10v10h14V10" />',
+            house: '<path d="M3 11l9-8 9 8M5 10v10h14V10M9 21v-6h6v6" />',
+            briefcase: '<path d="M4 7h16v13H4zM8 7V4h8v3" />',
+            buildings: '<path d="M3 21h18M5 21V7h6v14M13 21V11h6v10" />',
+            chart: '<path d="M3 17l6-6 4 4 8-8M15 7h6v6" />',
+            checklist: '<path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />',
+            search: '<circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />',
+            pin: '<path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" /><circle cx="12" cy="9" r="2.5" />'
+        };
+        function applyServices(services) {
+            if (!services || !services.length) return;
+            var grid = document.querySelector('.svc-grid');
+            if (!grid) return;
+            grid.innerHTML = services.map(function (s) {
+                var icon = SVC_ICONS[s.icon] || SVC_ICONS.home;
+                return '<div class="svc"><div class="ic"><svg viewBox="0 0 24 24">' + icon + '</svg></div>'
+                    + '<h3>' + esc(s.title) + '</h3><p>' + esc(s.description) + '</p></div>';
+            }).join('');
+        }
+
         function applyProjects(projects) {
             if (!projects || !projects.length) return;
             var fg = document.querySelector('.feat-grid');
@@ -5425,6 +5447,7 @@
                 '"projects": *[_type=="featuredProject"]|order(coalesce(order,999) asc){title,category,tagline,"image":image.asset->url},' +
                 '"owners": *[_type=="teamMember"]|order(coalesce(order,999) asc){name,role,bio,stat,"photo":photo.asset->url},' +
                 '"reviews": *[_type=="review"]|order(coalesce(order,999) asc){name,initials,quote,roleLabel,googleUrl,rating},' +
+                '"services": *[_type=="service"]|order(coalesce(order,999) asc){title,description,icon},' +
                 '"customers": *[_type=="happyCustomer"]|order(coalesce(order,999) asc){name,location,"photo":photo.asset->url},' +
                 '"props": *[_type=="property"]|order(coalesce(order,999) asc,_createdAt asc){tag,"city":city->slug.current,"cityName":city->name,loc,mapUrl,type,purpose,pmin,pmax,title,price,desc,amen,"hero":hero.asset->url,"detailImage":detailImage.asset->url,facts[]{key,value},"gallery":gallery[].asset->url,"brochure":brochure.asset->url,"logo":logo.asset->url,"video":video.asset->url}' +
                 '}';
@@ -5440,6 +5463,7 @@
                     try { applyProjects(d.projects); } catch (e) { console.error('applyProjects', e); }
                     try { applyOwners(d.owners, d.settings && d.settings.ownerIntro); } catch (e) { console.error('applyOwners', e); }
                     try { applyReviews(d.reviews); } catch (e) { console.error('applyReviews', e); }
+                    try { applyServices(d.services); } catch (e) { console.error('applyServices', e); }
                     try { applyCustomers(d.customers); } catch (e) { console.error('applyCustomers', e); }
                     if (d.props && d.props.length) {
                         PROPS = d.props.map(mapSanityProp);
