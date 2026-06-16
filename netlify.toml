@@ -4,6 +4,6 @@
 # OUT of the deploy. The serverless function is bundled from netlify/functions.
 
 [build]
-  command = "rm -rf dist && mkdir -p dist && cp index.html privacy.html terms.html disclaimer.html legal.css dist/"
+  command = "rm -rf dist && mkdir -p dist && cp index.html privacy.html terms.html disclaimer.html legal.css og-image.png dist/"
   publish = "dist"
   functions = "netlify/functions"
