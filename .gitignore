@@ -13,3 +13,9 @@ dist/
 
 # Personal Claude Code settings (machine-specific)
 .claude/settings.local.json
+
+# macOS junk
+.DS_Store
+
+# Generated business documents (quotation/contract/guide) — keep OUT of the public repo
+*.pdf

@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> 📘 **Read [`PROJECT-CONTEXT.md`](PROJECT-CONTEXT.md) first** — it's the full operations runbook
+> (deployment, custom domain/DNS, Sanity, secrets, the GitHub→Netlify workflow, gotchas, and a
+> "recover from just GitHub" checklist). This file below only covers the schema/architecture basics.
+
 ## Repository layout
 
 This repo contains two independent pieces:
