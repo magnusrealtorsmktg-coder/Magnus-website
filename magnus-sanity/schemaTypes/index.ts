@@ -3,6 +3,7 @@ import {city} from './city'
 import {featuredProject} from './featuredProject'
 import {service} from './service'
 import {teamMember} from './teamMember'
+import {ourTeamMember} from './ourTeamMember'
 import {review} from './review'
 import {happyCustomer} from './happyCustomer'
 import {marketInsights} from './marketInsights'
@@ -14,6 +15,7 @@ export const schemaTypes = [
   featuredProject,
   service,
   teamMember,
+  ourTeamMember,
   review,
   happyCustomer,
   marketInsights,

@@ -3648,6 +3648,19 @@
         </div>
     </section>
 
+    <!-- OUR TEAM (editable via Sanity → "Our Team"; hidden until members are added) -->
+    <section class="sec team" id="team" style="display:none">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">Our Team</span>
+                <h2 style="margin-top:22px">The people who <em>make it happen</em></h2>
+                <p id="teamIntro">A dedicated team of consultants and specialists guiding you at every step of
+                    your property journey.</p>
+            </div>
+            <div class="owners-grid team-grid reveal" id="teamGrid"></div>
+        </div>
+    </section>
+
     <!-- FEATURED PROJECTS -->
     <section class="sec" id="projects">
         <div class="wrap">
@@ -5375,6 +5388,30 @@
             }).join('');
         }
 
+        // ---- "Our Team" cards (separate from Owners; section stays hidden if empty) ----
+        function applyTeam(team, intro) {
+            if (intro) {
+                var introEl = document.getElementById('teamIntro');
+                if (introEl) introEl.textContent = intro;
+            }
+            if (!team || !team.length) return;
+            var tg = document.getElementById('teamGrid');
+            if (!tg) return;
+            tg.innerHTML = team.map(function (o) {
+                var detail = o.bio ? '<div class="oc-detail"><p>' + esc(o.bio) + '</p></div>' : '';
+                return '<article class="owner-card"><img src="' + sImg(o.photo, 700) + '" alt="' + esc(o.name) + '" '
+                    + 'onerror="this.style.background=\'linear-gradient(135deg,#efe8de,#f3eee7)\'">'
+                    + '<div class="oc-scrim"></div><div class="oc-info"><div class="oc-name">' + esc(o.name) + '</div>'
+                    + '<div class="oc-role">' + esc(o.role || '') + '</div>' + detail + '</div></article>';
+            }).join('');
+            var sec = document.getElementById('team');
+            if (sec) {
+                sec.style.display = '';
+                // reveal immediately in case the scroll-reveal pass already finished
+                sec.querySelectorAll('.reveal').forEach(function (e) { e.style.opacity = 1; e.style.transform = 'none'; });
+            }
+        }
+
         // ---- reviews marquee (set duplicated for the seamless scroll) ----
         function applyReviews(reviews) {
             if (!reviews || !reviews.length) return;
@@ -5479,11 +5516,12 @@
         function loadCMS() {
             if (!SANITY_PROJECT_ID || SANITY_PROJECT_ID === 'YOUR_PROJECT_ID') return; // not configured yet
             var q = '{' +
-                '"settings": *[_type=="siteSettings"][0]{phone,email,instagram,facebook,linkedin,youtube,ownerIntro,aboutHeading,aboutText,aboutPoints,stats[]{value,suffix,label},"heroImage":heroImage.asset->url,"aboutImageBig":aboutImageBig.asset->url,"aboutImageSmall":aboutImageSmall.asset->url,"whyImage":whyImage.asset->url},' +
+                '"settings": *[_type=="siteSettings"][0]{phone,email,instagram,facebook,linkedin,youtube,ownerIntro,teamIntro,aboutHeading,aboutText,aboutPoints,stats[]{value,suffix,label},"heroImage":heroImage.asset->url,"aboutImageBig":aboutImageBig.asset->url,"aboutImageSmall":aboutImageSmall.asset->url,"whyImage":whyImage.asset->url},' +
                 '"market": *[_type=="marketInsights"][0]{asOf,regionContext,regionSnapshotTag,regionSnapshotStats,indicators},' +
                 '"cities": *[_type=="city"]|order(coalesce(order,999) asc){name,"slug":slug.current,marketContext,snapshotTag,snapshotStats},' +
                 '"projects": *[_type=="featuredProject"]|order(coalesce(order,999) asc){title,category,tagline,"image":image.asset->url},' +
                 '"owners": *[_type=="teamMember"]|order(coalesce(order,999) asc){name,role,bio,stat,"photo":photo.asset->url},' +
+                '"team": *[_type=="ourTeamMember"]|order(coalesce(order,999) asc){name,role,bio,"photo":photo.asset->url},' +
                 '"reviews": *[_type=="review"]|order(coalesce(order,999) asc){name,initials,quote,roleLabel,googleUrl,rating},' +
                 '"services": *[_type=="service"]|order(coalesce(order,999) asc){title,description,icon},' +
                 '"customers": *[_type=="happyCustomer"]|order(coalesce(order,999) asc){name,location,"photo":photo.asset->url},' +
@@ -5500,6 +5538,7 @@
                     try { applyContact(d.settings); } catch (e) { console.error('applyContact', e); }
                     try { applyProjects(d.projects); } catch (e) { console.error('applyProjects', e); }
                     try { applyOwners(d.owners, d.settings && d.settings.ownerIntro); } catch (e) { console.error('applyOwners', e); }
+                    try { applyTeam(d.team, d.settings && d.settings.teamIntro); } catch (e) { console.error('applyTeam', e); }
                     try { applyReviews(d.reviews); } catch (e) { console.error('applyReviews', e); }
                     try { applyServices(d.services); } catch (e) { console.error('applyServices', e); }
                     try { applyCustomers(d.customers); } catch (e) { console.error('applyCustomers', e); }

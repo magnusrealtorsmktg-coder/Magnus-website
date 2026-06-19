@@ -65,6 +65,8 @@ export const siteSettings = defineType({
       description: 'The descriptive paragraph shown under the About heading.'}),
     defineField({name: 'aboutPoints', title: 'About section — checklist points', type: 'array', of: [{type: 'string'}],
       description: 'The ticked points (e.g. "Deep local market understanding"). Add, remove or reorder freely. Leave empty to keep the built-in list.'}),
+    defineField({name: 'teamIntro', title: 'Our Team — section intro', type: 'text', rows: 3,
+      description: 'The paragraph under the "Our Team" heading.'}),
     defineField({name: 'ownerIntro', title: 'Owner section intro', type: 'text', rows: 3,
       description: 'The paragraph under "Meet the Owners".'}),
   ],
