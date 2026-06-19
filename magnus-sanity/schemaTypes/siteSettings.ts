@@ -56,7 +56,14 @@ export const siteSettings = defineType({
           {name: 'suffix', title: 'Suffix', type: 'string', description: 'Shown right after the number, e.g. "+". Optional.'},
           {name: 'label', title: 'Label', type: 'string', description: 'The caption under the number, e.g. "Happy Clients".'},
         ],
-        preview: {select: {title: 'value', subtitle: 'label'}},
+        preview: {
+          select: {value: 'value', suffix: 'suffix', label: 'label'},
+          prepare({value, suffix, label}) {
+            // title must be a string — `value` is a number, which would crash the list preview
+            const num = value == null ? '' : String(value) + (suffix || '')
+            return {title: num || '(no number)', subtitle: label || ''}
+          },
+        },
       }],
     }),
     defineField({name: 'aboutHeading', title: 'About section — heading', type: 'string',
