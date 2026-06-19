@@ -502,6 +502,99 @@
             margin-right: auto
         }
 
+        /* ---------- Team Magnus (editorial statement) ---------- */
+        .team-magnus .wrap {
+            max-width: 980px
+        }
+
+        .tm-panel {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 74px 56px 60px;
+            border-radius: 26px;
+            background: linear-gradient(160deg, #f7f2ec 0%, var(--sand) 100%);
+            border: 1px solid var(--gline);
+            box-shadow: var(--shadow)
+        }
+
+        .tm-panel::before {
+            /* faint monogram watermark */
+            content: "M";
+            position: absolute;
+            right: -1.5vw;
+            bottom: -9vw;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28rem;
+            line-height: 1;
+            color: var(--gold);
+            opacity: .06;
+            pointer-events: none
+        }
+
+        .tm-panel>* {
+            position: relative
+        }
+
+        .tm-quote {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 5rem;
+            line-height: .55;
+            color: var(--gold-soft);
+            margin-bottom: 10px
+        }
+
+        .tm-panel .eyebrow {
+            justify-content: center
+        }
+
+        .tm-panel h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            font-weight: 400;
+            letter-spacing: -.01em;
+            margin-top: 16px
+        }
+
+        .tm-panel h2 em {
+            font-style: italic;
+            color: var(--bronze)
+        }
+
+        .tm-rule {
+            width: 64px;
+            height: 2px;
+            margin: 22px auto 26px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent)
+        }
+
+        .tm-panel p {
+            max-width: 60ch;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.85
+        }
+
+        .tm-sign {
+            margin-top: 30px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--bronze)
+        }
+
+        @media (max-width:640px) {
+            .tm-panel {
+                padding: 52px 24px 46px;
+                border-radius: 20px
+            }
+
+            .tm-quote {
+                font-size: 4rem
+            }
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(36px)
@@ -3648,16 +3741,19 @@
         </div>
     </section>
 
-    <!-- TEAM MAGNUS (text only — heading + paragraph, editable via Sanity) -->
+    <!-- TEAM MAGNUS (editorial statement — heading + paragraph editable via Sanity) -->
     <section class="sec team-magnus" id="team">
         <div class="wrap">
-            <div class="sec-head center reveal">
+            <div class="tm-panel reveal">
+                <div class="tm-quote" aria-hidden="true">&#8220;</div>
                 <span class="eyebrow">Team Magnus</span>
                 <h2 id="teamMagnusHeading">A team that puts <em>your interests first</em></h2>
+                <div class="tm-rule" aria-hidden="true"></div>
                 <p id="teamMagnusText">Behind Magnus Realtors is a close-knit team of advisors, market specialists
                     and relationship managers who treat every client like family. We listen first, advise honestly,
                     and stay with you long after the deal is done — because the right property decision deserves the
                     right people guiding it.</p>
+                <div class="tm-sign">— Team Magnus</div>
             </div>
         </div>
     </section>
