@@ -44,6 +44,21 @@ export const siteSettings = defineType({
     defineField({name: 'linkedin', title: 'LinkedIn URL', type: 'url'}),
     defineField({name: 'youtube', title: 'YouTube URL', type: 'url',
       description: 'Your YouTube channel or video link. Powers the YouTube icon in the footer.'}),
+    defineField({
+      name: 'stats',
+      title: 'Key numbers (the 3 stats under the hero)',
+      type: 'array',
+      description: 'The three highlighted numbers under the hero (e.g. Happy Clients, Properties Assisted, Years of Experience). Edit, reorder, add or remove. Leave empty to keep the built-in values.',
+      of: [{
+        type: 'object',
+        fields: [
+          {name: 'value', title: 'Number', type: 'number', description: 'Just the digits, e.g. 1500 (it animates and gets commas automatically).'},
+          {name: 'suffix', title: 'Suffix', type: 'string', description: 'Shown right after the number, e.g. "+". Optional.'},
+          {name: 'label', title: 'Label', type: 'string', description: 'The caption under the number, e.g. "Happy Clients".'},
+        ],
+        preview: {select: {title: 'value', subtitle: 'label'}},
+      }],
+    }),
     defineField({name: 'aboutHeading', title: 'About section — heading', type: 'string',
       description: 'The bold headline in the "About Magnus" section. Wrap any words in *asterisks* to show them in gold italic, e.g. "Local expertise. *Professional advice.* Lasting relationships."'}),
     defineField({name: 'aboutText', title: 'About section — paragraph', type: 'text', rows: 5,
