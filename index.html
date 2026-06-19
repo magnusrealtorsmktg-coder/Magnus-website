@@ -3615,13 +3615,13 @@
             </div>
             <div class="about-txt reveal">
                 <span class="eyebrow">About Magnus</span>
-                <h2 style="margin-top:22px">Local expertise. <em>Professional advice.</em> Lasting relationships.</h2>
-                <p>From our office in Virar West, Magnus Realtors® has built a reputation for honest, knowledgeable
+                <h2 id="aboutHeading" style="margin-top:22px">Local expertise. <em>Professional advice.</em> Lasting relationships.</h2>
+                <p id="aboutText">From our office in Virar West, Magnus Realtors® has built a reputation for honest, knowledgeable
                     property
                     guidance. We pair deep, on-the-ground market understanding with a calm, consultative approach — so
                     families,
                     investors and businesses make confident decisions, not rushed ones.</p>
-                <div class="about-pts">
+                <div class="about-pts" id="aboutPoints">
                     <div class="pt"><svg viewBox="0 0 24 24">
                             <path d="M20 6L9 17l-5-5" />
                         </svg>Deep local market understanding</div>
@@ -5412,6 +5412,24 @@
                 var whyImg = document.getElementById('whyImage');
                 if (whyImg) whyImg.src = sImg(s.whyImage, 900);
             }
+            if (s.aboutHeading) {
+                var aH = document.getElementById('aboutHeading');
+                // Escape HTML, then turn *gold italic* markers into <em>
+                if (aH) aH.innerHTML = s.aboutHeading
+                    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+            }
+            if (s.aboutText) {
+                var aT = document.getElementById('aboutText');
+                if (aT) aT.textContent = s.aboutText;
+            }
+            if (s.aboutPoints && s.aboutPoints.length) {
+                var aP = document.getElementById('aboutPoints');
+                if (aP) aP.innerHTML = s.aboutPoints.map(function (p) {
+                    return '<div class="pt"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>' +
+                        String(p).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+                }).join('');
+            }
             if (s.phone) {
                 var tel = s.phone.replace(/[^0-9+]/g, '');
                 var waNum = s.phone.replace(/[^0-9]/g, '');
@@ -5441,7 +5459,7 @@
         function loadCMS() {
             if (!SANITY_PROJECT_ID || SANITY_PROJECT_ID === 'YOUR_PROJECT_ID') return; // not configured yet
             var q = '{' +
-                '"settings": *[_type=="siteSettings"][0]{phone,email,instagram,facebook,linkedin,youtube,ownerIntro,"heroImage":heroImage.asset->url,"aboutImageBig":aboutImageBig.asset->url,"aboutImageSmall":aboutImageSmall.asset->url,"whyImage":whyImage.asset->url},' +
+                '"settings": *[_type=="siteSettings"][0]{phone,email,instagram,facebook,linkedin,youtube,ownerIntro,aboutHeading,aboutText,aboutPoints,"heroImage":heroImage.asset->url,"aboutImageBig":aboutImageBig.asset->url,"aboutImageSmall":aboutImageSmall.asset->url,"whyImage":whyImage.asset->url},' +
                 '"market": *[_type=="marketInsights"][0]{asOf,regionContext,regionSnapshotTag,regionSnapshotStats,indicators},' +
                 '"cities": *[_type=="city"]|order(coalesce(order,999) asc){name,"slug":slug.current,marketContext,snapshotTag,snapshotStats},' +
                 '"projects": *[_type=="featuredProject"]|order(coalesce(order,999) asc){title,category,tagline,"image":image.asset->url},' +
