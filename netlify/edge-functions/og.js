@@ -18,9 +18,9 @@ const OG_HTML = `<!DOCTYPE html>
 <meta property="og:site_name" content="Magnus Realtors">
 <meta property="og:title" content="Magnus Realtors® — Real Estate Guidance Built on Trust">
 <meta property="og:description" content="Premium real estate consultancy in Virar West — residential & commercial buying, selling, rentals and investment across Virar, Global City & Vasai.">
-<meta property="og:url" content="https://magnusrealtor.in/">
-<meta property="og:image" content="https://magnusrealtor.in/og-image.jpg">
-<meta property="og:image:secure_url" content="https://magnusrealtor.in/og-image.jpg">
+<meta property="og:url" content="https://magnusrealtor.com/">
+<meta property="og:image" content="https://magnusrealtor.com/og-image.jpg">
+<meta property="og:image:secure_url" content="https://magnusrealtor.com/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@ const OG_HTML = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Magnus Realtors® — Real Estate Guidance Built on Trust">
 <meta name="twitter:description" content="Premium real estate consultancy in Virar West — residential & commercial buying, selling, rentals and investment across Virar, Global City & Vasai.">
-<meta name="twitter:image" content="https://magnusrealtor.in/og-image.jpg">
+<meta name="twitter:image" content="https://magnusrealtor.com/og-image.jpg">
 </head>
 <body>Magnus Realtors® — Real Estate Guidance Built on Trust</body>
 </html>`;
